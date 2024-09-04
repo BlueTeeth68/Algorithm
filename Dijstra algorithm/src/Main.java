@@ -90,7 +90,7 @@ public class Main {
 
         Scanner reader = new Scanner(System.in);
 
-        int src = 0;
+        int src;
 
         System.out.print("Input source position: ");
         src = reader.nextInt();
