@@ -1,5 +1,6 @@
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 import java.util.Stack;
 
 public class Main {
@@ -20,10 +21,14 @@ public class Main {
         System.out.println(
                 "Vertex \t\t Distance from Source");
         for (int i = 0; i < dist.length; i++) {
-            System.out.print((i + 1) + ": " + dist[i] + ". ");
-            System.out.print("Path: ");
-            printPath(i, src, parents);
-            System.out.println();
+            if (dist[i] < Integer.MAX_VALUE) {
+                System.out.print((i + 1) + ": " + dist[i] + ". ");
+                System.out.print("Path: ");
+                printPath(i, src, parents);
+                System.out.println();
+            } else {
+                System.out.print((i + 1) + ": Infinite. No path.");
+            }
         }
     }
 
@@ -72,15 +77,29 @@ public class Main {
     public static void main(String[] args) {
         int[][] graph
                 = new int[][]{
-                {0, 3, 4, 0, 0, 0, 0, 0},
-                {3, 0, 5, 10, 0, 9, 0, 0},
-                {4, 5, 0, 8, 5, 0, 0, 0},
-                {0, 10, 8, 0, 6, 10, 7, 3},
-                {0, 0, 5, 9, 0, 0, 4, 0},
-                {0, 9, 0, 10, 0, 0, 0, 2},
-                {0, 0, 0, 7, 4, 0, 0, 5},
-                {0, 0, 0, 3, 0, 2, 5, 0}};
+                {0, 3, 4, 0, 0, 0, 0, 0, 0},
+                {3, 0, 5, 10, 0, 9, 0, 0, 0},
+                {4, 5, 0, 8, 5, 0, 0, 0, 0},
+                {0, 10, 8, 0, 6, 10, 7, 3, 0},
+                {0, 0, 5, 9, 0, 0, 4, 0, 0},
+                {0, 9, 0, 10, 0, 0, 0, 2, 0},
+                {0, 0, 0, 7, 4, 0, 0, 5, 0},
+                {0, 0, 0, 3, 0, 2, 5, 0, 0},
+                {0, 0, 0, 0, 0, 0, 0, 0, 0},
+        };
 
-        dijkstra(graph, 0);
+        Scanner reader = new Scanner(System.in);
+
+        int src = 0;
+
+        System.out.print("Input source position: ");
+        src = reader.nextInt();
+
+        while (src < 1 || src > graph.length) {
+            System.out.println("Invalid source");
+            System.out.print("Input source position: ");
+            src = reader.nextInt();
+        }
+        dijkstra(graph, src - 1);
     }
 }
