@@ -20,7 +20,7 @@ public class Main {
         System.out.println(
                 "Vertex \t\t Distance from Source");
         for (int i = 0; i < dist.length; i++) {
-            System.out.print(i + ": " + dist[i] + ". ");
+            System.out.print((i + 1) + ": " + dist[i] + ". ");
             System.out.print("Path: ");
             printPath(i, src, parents);
             System.out.println();
@@ -35,7 +35,7 @@ public class Main {
         }
         track.push(des);
         while (!track.isEmpty()) {
-            System.out.print(track.pop() + (track.isEmpty() ? "." : " -> "));
+            System.out.print((track.pop() + 1) + (track.isEmpty() ? "." : " -> "));
         }
     }
 
@@ -72,15 +72,14 @@ public class Main {
     public static void main(String[] args) {
         int[][] graph
                 = new int[][]{
-                {0, 4, 0, 0, 0, 0, 0, 8, 0},
-                {4, 0, 8, 0, 0, 0, 0, 11, 0},
-                {0, 8, 0, 7, 0, 4, 0, 0, 2},
-                {0, 0, 7, 0, 9, 14, 0, 0, 0},
-                {0, 0, 0, 9, 0, 10, 0, 0, 0},
-                {0, 0, 4, 14, 10, 0, 2, 0, 0},
-                {0, 0, 0, 0, 0, 2, 0, 1, 6},
-                {8, 11, 0, 0, 0, 0, 1, 0, 7},
-                {0, 0, 2, 0, 0, 0, 6, 7, 0}};
+                {0, 3, 4, 0, 0, 0, 0, 0},
+                {3, 0, 5, 10, 0, 9, 0, 0},
+                {4, 5, 0, 8, 5, 0, 0, 0},
+                {0, 10, 8, 0, 6, 10, 7, 3},
+                {0, 0, 5, 9, 0, 0, 4, 0},
+                {0, 9, 0, 10, 0, 0, 0, 2},
+                {0, 0, 0, 7, 4, 0, 0, 5},
+                {0, 0, 0, 3, 0, 2, 5, 0}};
 
         dijkstra(graph, 0);
     }
